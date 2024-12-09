@@ -18,6 +18,13 @@ issues:
         - gocyclo
         - gosec
 
+depguard:
+	rules:
+		main:
+			allow:
+				- $gostd
+				- github.com/stretchr/testify/require
+
 linters:
   disable-all: true
   enable:
