@@ -46,17 +46,8 @@ func (pq *PriorityQueue) Pop() any {
 	return item
 }
 
-func (pq *PriorityQueue) update(item *Item, value string, priority int) {
-	item.value = value
-	item.priority = priority
-	heap.Fix(pq, item.index)
-}
-
-// O(N)
 func Top10(s string) []string {
-	//func main() {
 	items := map[string]int{}
-	// O(N)
 	words := strings.Fields(s)
 	for _, word := range words {
 		val, ok := items[word]
@@ -69,7 +60,6 @@ func Top10(s string) []string {
 
 	heapq := make(PriorityQueue, len(items))
 	i := 0
-	// O(N)
 	for value, priority := range items {
 		heapq[i] = &Item{
 			value:    value,
@@ -78,15 +68,14 @@ func Top10(s string) []string {
 		}
 		i++
 	}
-	// O(N)
 	heap.Init(&heapq)
 	j := min(10, heapq.Len())
 	result := make([]string, 0, j)
-	// 10log(N)
 	for j > 0 {
 		item := heap.Pop(&heapq).(*Item)
 		result = append(result, item.value)
-		j -= 1
+		j--
 	}
+
 	return result
 }
