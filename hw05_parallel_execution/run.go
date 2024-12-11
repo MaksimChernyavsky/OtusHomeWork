@@ -31,12 +31,12 @@ func Run(tasks []Task, n, m int) error {
 					return
 				}
 				task := tasks[i]
-				i += 1
+				i++
 				mu.Unlock()
 				err := task()
 				mu.Lock()
 				if err != nil {
-					errNum += 1
+					errNum++
 				}
 				mu.Unlock()
 			}
@@ -46,7 +46,7 @@ func Run(tasks []Task, n, m int) error {
 	wg.Wait()
 	if errNum >= m {
 		return ErrErrorsLimitExceeded
-	} else {
-		return nil
 	}
+
+	return nil
 }
