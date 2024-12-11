@@ -44,7 +44,7 @@ func (l *list) PushFront(v interface{}) *ListItem {
 	if l.bot == nil {
 		l.bot = newListItem
 	}
-	l.c += 1
+	l.c++
 	return newListItem
 }
 func (l *list) PushBack(v interface{}) *ListItem {
@@ -60,7 +60,7 @@ func (l *list) PushBack(v interface{}) *ListItem {
 	if l.top == nil {
 		l.top = newListItem
 	}
-	l.c += 1
+	l.c++
 	return newListItem
 }
 func (l *list) Remove(item *ListItem) {
@@ -76,7 +76,7 @@ func (l *list) Remove(item *ListItem) {
 	if l.bot == item {
 		l.bot = item.Prev
 	}
-	l.c -= 1
+	l.c--
 }
 func (l *list) MoveToFront(item *ListItem) {
 	l.Remove(item)
@@ -86,7 +86,7 @@ func (l *list) MoveToFront(item *ListItem) {
 		l.top.Prev = item
 	}
 	l.top = item
-	l.c += 1
+	l.c++
 }
 
 func NewList() List {

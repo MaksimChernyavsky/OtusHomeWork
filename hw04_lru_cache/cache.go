@@ -29,11 +29,10 @@ func (lru *lruCache) Set(key Key, value interface{}) bool {
 		}
 		lru.items[key] = lru.queue.PushFront(value)
 		return false
-	} else {
-		item.Value = value
-		lru.queue.MoveToFront(item)
-		return true
 	}
+	item.Value = value
+	lru.queue.MoveToFront(item)
+	return true
 }
 
 func (lru *lruCache) Get(key Key) (interface{}, bool) {
@@ -43,10 +42,9 @@ func (lru *lruCache) Get(key Key) (interface{}, bool) {
 			delete(lru.items, key)
 		}
 		return nil, false
-	} else {
-		lru.queue.MoveToFront(item)
-		return item.Value, true
 	}
+	lru.queue.MoveToFront(item)
+	return item.Value, true
 }
 
 func (lru *lruCache) Clear() {
