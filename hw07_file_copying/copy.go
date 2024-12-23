@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/cheggaaa/pb"
+	"github.com/cheggaaa/pb" //nolint:all
 )
 
 var (
@@ -58,7 +58,7 @@ func Copy(fromPath, toPath string, offset, limit int64) error {
 	var counter int64
 	for counter < copySize {
 		var c int64
-		progress += 1
+		progress++
 		if progress == 100 {
 			c, err = io.CopyN(toFile, fromFile, copySize-counter)
 		} else {
@@ -66,7 +66,7 @@ func Copy(fromPath, toPath string, offset, limit int64) error {
 		}
 		if err != nil {
 			if err != io.EOF {
-				return fmt.Errorf("copy from file")
+				return fmt.Errorf("copy from file: %w", err)
 			}
 			break
 		}
