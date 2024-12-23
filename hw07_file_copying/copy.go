@@ -65,7 +65,7 @@ func Copy(fromPath, toPath string, offset, limit int64) error {
 			c, err = io.CopyN(toFile, fromFile, copyChunk)
 		}
 		if err != nil {
-			if err != io.EOF {
+			if !errors.Is(err, io.EOF) {
 				return fmt.Errorf("copy from file: %w", err)
 			}
 			break
