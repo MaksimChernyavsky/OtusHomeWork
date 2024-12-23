@@ -38,6 +38,7 @@ func wrapChannelWithDone(in In, done In, readAfterDone bool) In {
 		}
 
 		if readAfterDone {
+			//nolint:all
 			for range in {
 			}
 		}
