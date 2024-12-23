@@ -38,7 +38,7 @@ func wrapChannelWithDone(in In, done In, readAfterDone bool) In {
 		}
 
 		if readAfterDone {
-			for _ = range in {
+			for range in {
 			}
 		}
 
