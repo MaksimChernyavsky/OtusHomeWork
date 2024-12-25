@@ -1,4 +1,4 @@
-module github.com/MaksimChernyavsky/hw01_hello_otus
+module github.com/MaksimChernyavsky/OtusHomeWork/hw01_hello_otus
 
 go 1.22
 
