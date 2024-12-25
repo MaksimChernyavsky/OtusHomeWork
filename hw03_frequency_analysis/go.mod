@@ -1,4 +1,4 @@
-module github.com/MaksimChernyavsky/hw03_frequency_analysis
+module github.com/MaksimChernyavsky/OtusHomeWork/hw03_frequency_analysis
 
 go 1.22
 

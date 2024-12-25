@@ -2,6 +2,7 @@ package hw03frequencyanalysis
 
 import (
 	"testing"
+	"fmt"
 
 	"github.com/stretchr/testify/require"
 )
@@ -79,4 +80,37 @@ func TestTop10(t *testing.T) {
 			require.Equal(t, expected, Top10(text))
 		}
 	})
+}
+
+func TestTop10Depth(t *testing.T) {
+  tests := []struct {
+    in  string
+		expected []string
+		name string
+  }{
+    {
+      in: "z y x w v u t s r q p o n m a b c d e f g h i j k l",
+			expected: []string{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" },
+			name: "alphabetical order for equals",
+    },
+    {
+      in: "нога ногу Нога",
+			expected: []string{ "Нога", "нога", "ногу" },
+			name: "word forms",
+    },
+    {
+      in: "нога ногу Нога нога,",
+			expected: []string{ "Нога", "нога", "нога,", "ногу" },
+			name: "word forms",
+    },
+	}
+
+  for _, tt := range tests {
+    t.Run(fmt.Sprintf("case %s", tt.name), func(t *testing.T) {
+      tt := tt
+      t.Parallel()
+
+			require.Equal(t, tt.expected, Top10(tt.in), "unexpected result")
+		})
+	}
 }
